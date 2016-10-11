@@ -1,0 +1,597 @@
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="jquery-1.12.4.min.js"></script>
+		<script src="code.js"></script>
+		
+		<style type="text/css">
+			body{
+				background-color:#f6f9fc;
+				margin:0;
+			}
+			
+			#highlight{
+				position:fixed;
+				top:0px;
+				left:0px;
+				right:0px;
+				bottom:0px;
+				z-index:9999;
+				background-color:rgba(255,255,255,0.5);
+				display:none;
+			}
+			
+			#highlight .inner{
+				position:absolute;
+				background-color:rgba(0,0,0,0.8);
+				box-shadow:0px 0px 20px #000;
+				border-radius:5px;
+			}
+			
+
+			#highlight img{
+				margin-top:20px;
+				margin-left:20px;
+				cursor:pointer;
+			}		
+			
+			.wrapper{
+				display:inline-block;
+				background-color:#FFFFFF;
+				border:1px solid rgb(202, 215, 225);
+				border-radius:10px;
+				margin-left:40px;
+				margin-right:40px;
+				margin-top:30px;
+				padding:16px;
+				position:absolute;
+				left:0;
+				right:0;
+			}
+						
+			.year{
+				font-family:verdana;
+				font-size:18px;
+				color: #2365B0;
+				display:inline;
+				position:relative;
+				clear:both;
+				margin-bottom:5px;
+				margin-top:0px;
+			}
+						
+			.work{
+				overflow:hidden;
+				width:200px;
+				height:150px;
+				background-color:#CCC;
+				margin-right:20px;
+				margin-bottom:20px;
+				float:left;
+				position:relative;
+				border:4px solid rgb(202, 215, 225);
+				cursor:pointer;
+				border-radius:4px;
+				overflow:hidden;
+				
+			}
+			
+			.work img{
+				position:absolute;
+				top:0px;
+				width:100%;			
+			}
+			
+			.work .title, .work .date, .work .user,.work a{
+				color:#FFFFFF;
+				font-family:verdana;
+				font-size:10px;
+			}
+			
+			.work .title{
+				position:absolute;
+				left:10px;
+				top:100px;
+				width:180px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				text-shadow:1px 1px 1px #000000;
+			}
+			
+			.work .user{
+				position:absolute;
+				left:10px;
+				top:115px;
+				color:#FFCC00;
+				text-shadow:1px 1px 1px #000000;
+			}
+			
+			.work .date{
+				position:absolute;
+				right:10px;
+				top:115px;
+				color:#FFFFFF;
+				text-shadow:1px 1px 1px #000000;
+			}
+			.work a{
+				position:absolute;
+				left:10px;
+				top:130px;
+				color:#FFFFFF;
+				text-shadow:1px 1px 1px #000000;
+			}
+			
+			.work .fade{
+				position:absolute;
+				left:0px;
+				top:90px;
+				width:200px;
+				height:60px;
+				background: -moz-linear-gradient(top,  rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.5) 44%, rgba(255,255,255,1) 99%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top,  rgba(255,255,255,0.24) 0%,rgba(255,255,255,1) 44%,rgba(255,255,255,1) 99%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(68, 105, 156,1) 80%,rgba(68, 105, 156,1) 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+			}
+			
+			h1{
+				font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+				font-size:28px;
+				color: #2365B0;
+				padding: 0 0 10px 0;
+				margin:0;
+				font-weight: normal;
+			}
+			
+			.desc{
+				color: #566579;
+				font: 81.25%/1.462em Arial, Helvetica, sans-serif;
+				margin-top:0px;
+				margin-bottom:10px;;
+				padding:0;
+			}
+			
+			.split{
+				border-color: #b9c5ce;
+				border-top-style: dotted;
+				border-top-width: 1px;
+				padding: 5px 0;
+			}
+
+			.split2{
+				padding: 0;
+				margin-bottom:10px;
+				height:0px;
+				border:1px solid #566579;
+			}
+			
+			.works{
+				display:none;
+				padding-top: 10px;
+			}
+			
+			.contents{
+				position:relative;
+			}
+			
+			.show{
+				font: 70.25%/1.462em Arial, Helvetica, sans-serif;
+				display:inline-block;
+				margin-left:10px;
+				top:-2px;
+				position:relative;
+				color:#2365B0;
+				cursor:pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="highlight">
+			<div class="inner">
+			</div>
+		</div>
+		<div class="contents">
+			<div class="wrapper">
+		
+			<h1>Blender PT</h1>
+			<div class="split"></div>
+			<p class="desc">Galeira de trabalhos dos utilizadores de Blender</p>
+			<div class="split2"></div>
+			<div class="year">2013</div><div class="show" data-year="2013">[Mostrar]</div><br/>
+			<div class="works" data-year="2013">
+				<div class="work" data-type="game">
+					<img src="2013/Blender Asteroids.png"/>
+					<div class="fade"></div>
+					<div class="title">Blender Asteroids</div>
+					<div class="date">2/25/2013</div>
+					<div class="user">Rogper</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=14">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/opel-gt.jpg"/>
+					<div class="fade"></div>
+					<div class="title">Opel GT</div>
+					<div class="date">2/25/2013</div>
+					<div class="user">Rogper</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=13">link</a>
+				</div>
+				<div class="work" data-type="game">
+					<img src="2013/Ball in the hole! - BGE minigame.png"/>
+					<div class="fade"></div>
+					<div class="title">Ball in the hole! - BGE minigame</div>
+					<div class="date">2/26/2013</div>
+					<div class="user">Forion</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=16">link</a>
+				</div>
+				<div class="work" data-type="game">
+					<img src="2013/Blender Sticks - BGE minigame.jpg"/>
+					<div class="fade"></div>
+					<div class="title">Blender Sticks - BGE minigame</div>
+					<div class="date">2/26/2013</div>
+					<div class="user">Forion</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=17">link</a>
+				</div>
+				<div class="work" data-type="game">
+					<img src="2013/shootordie.png"/>
+					<div class="fade"></div>
+					<div class="title">Shoot or Die - Versão completa!</div>
+					<div class="date">2/26/2013</div>
+					<div class="user">Forion</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=19">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/cms0ark.jpg"/>
+					<div class="fade"></div>
+					<div class="title">Modelos- By Forion</div>
+					<div class="date">2/26/2013</div>
+					<div class="user">Forion</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=21">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/ue0002.png"/>
+					<div class="fade"></div>
+					<div class="title">Renato Sousa - portfólio</div>
+					<div class="date">3/5/2013</div>
+					<div class="user">renatogsousa</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=39">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/caterham_2.png"/>
+					<div class="fade"></div>
+					<div class="title">dodi280 - Meus trabalhos</div>
+					<div class="date">3/5/2013</div>
+					<div class="user">dodi280</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=48">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/Albert.jpg"/>
+					<div class="fade"></div>
+					<div class="title">Albert</div>
+					<div class="date">3/27/2013</div>
+					<div class="user">SlykDrako</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=54">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/Springer.png"/>
+					<div class="fade"></div>
+					<div class="title">Peça de Xadrez</div>
+					<div class="date">4/15/2013</div>
+					<div class="user">José</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=83">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2013/ilusion.png"/>
+					<div class="fade"></div>
+					<div class="user">camara</div>
+					<div class="title">illusion</div>
+					<div class="date">6/2/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=121">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/cavalo_marinho.png"/>
+					<div class="fade"></div>
+					<div class="user">José</div>
+					<div class="title">Cavalo-marinho</div>
+					<div class="date">6/7/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=125">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2013/ECHOES short film.jpg"/>
+					<div class="fade"></div>
+					<div class="user">pkorpys</div>
+					<div class="title">ECHOES short film</div>
+					<div class="date">6/23/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=140">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/indio.png"/>
+					<div class="fade"></div>
+					<div class="user">José</div>
+					<div class="title">Melody - Pequena maquete de um índio</div>
+					<div class="date">7/18/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=157">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/sasukebygabrielbenk.png"/>
+					<div class="fade"></div>
+					<div class="user">Gabrielbenk</div>
+					<div class="title">[Modelos] Gabrielbenk</div>
+					<div class="date">7/21/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=160">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/rogper wolverine.jpg"/>
+					<div class="fade"></div>
+					<div class="user">Rogper</div>
+					<div class="title">rogper wolverine</div>
+					<div class="date">8/4/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=170">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/Valve2.png"/>
+					<div class="fade"></div>
+					<div class="user">José</div>
+					<div class="title">Olho mágico</div>
+					<div class="date">8/22/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=177">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/Brinquedo de Corda.png"/>
+					<div class="fade"></div>
+					<div class="user">José</div>
+					<div class="title">Brinquedo de Corda</div>
+					<div class="date">8/27/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=181">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2013/nanoxim.png"/>
+					<div class="fade"></div>
+					<div class="user">renatogsousa</div>
+					<div class="title">nanoXIM - Fluidinova</div>
+					<div class="date">8/27/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=187">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/Bandeira de Portugal.jpg"/>
+					<div class="fade"></div>
+					<div class="user">jnascimento</div>
+					<div class="title">Bandeira de Portugal</div>
+					<div class="date">11/3/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=222">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2013/36as.jpg"/>
+					<div class="fade"></div>
+					<div class="user">juliocezarpires</div>
+					<div class="title">Alguns trabalhos</div>
+					<div class="date">12/16/2013</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=244">link</a>
+				</div>
+			</div>
+	
+			<div class="year">2014</div><div class="show" data-year="2014">[Mostrar]</div><br/>
+			<div class="works" data-year="2014">
+				<div class="work" data-type="image">
+					<img src="2014/startscreen_zpsd05e4ce8.png"/>
+					<div class="fade"></div>
+					<div class="user">jnascimento</div>
+					<div class="title">Arawak</div>
+					<div class="date">1/16/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=252">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2014/stuntmansilent.jpg"/>
+					<div class="fade"></div>
+					<div class="user">rogper</div>
+					<div class="title">Stuntman02 Silent</div>
+					<div class="date">2/6/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=261">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/render-composited-withstars.png"/>
+					<div class="fade"></div>
+					<div class="user">nunodonato</div>
+					<div class="title">Peaking at the stars</div>
+					<div class="date">2/17/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=268">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/baby.jpg"/>
+					<div class="fade"></div>
+					<div class="user">nunodonato</div>
+					<div class="title">Fascínio pela luz</div>
+					<div class="date">2/18/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=271">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/01_bilbo.jpg"/>
+					<div class="fade"></div>
+					<div class="user">ricaxe</div>
+					<div class="title">Bilbo Mini</div>
+					<div class="date">4/5/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=295">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/Cobra_18_1.png"/>
+					<div class="fade"></div>
+					<div class="user">dodi280</div>
+					<div class="title">Shelby Cobra</div>
+					<div class="date">4/7/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=296">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2014/Massinha.jpg"/>
+					<div class="fade"></div>
+					<div class="user">animalex3d</div>
+					<div class="title">STOP MOTION BY BLENDER</div>
+					<div class="date">4/10/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=299">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/Underworld Creature.jpg"/>
+					<div class="fade"></div>
+					<div class="user">animalex3d</div>
+					<div class="title">Underworld Creature</div>
+					<div class="date">4/11/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=300">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2014/chamada_para_tv.jpg"/>
+					<div class="fade"></div>
+					<div class="user">animalex3d</div>
+					<div class="title">CHAMADA PARA TV</div>
+					<div class="date">4/23/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=309">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2014/generations.jpg"/>
+					<div class="fade"></div>
+					<div class="user">Martulen</div>
+					<div class="title">Generations</div>
+					<div class="date">5/15/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=317">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/89CYDbE.jpg"/>
+					<div class="fade"></div>
+					<div class="user">eduardogharcia</div>
+					<div class="title">Laranja</div>
+					<div class="date">6/9/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=381">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2014/478476414_200x150.jpg"/>
+					<div class="fade"></div>
+					<div class="user">Utopia780</div>
+					<div class="title">_Eco/ The Tunnel</div>
+					<div class="date">6/11/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=91&p=2">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2014/jose3d.jpg"/>
+					<div class="fade"></div>
+					<div class="user">José</div>
+					<div class="title">José3D</div>
+					<div class="date">6/17/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=337">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/441.png"/>
+					<div class="fade"></div>
+					<div class="user">sergio</div>
+					<div class="title">Saloio</div>
+					<div class="date">6/29/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=356">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/diversao_1.png"/>
+					<div class="fade"></div>
+					<div class="user">WBlacker</div>
+					<div class="title">Infancia</div>
+					<div class="date">7/7/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=358">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/industrial_1.png"/>
+					<div class="fade"></div>
+					<div class="user">camara</div>
+					<div class="title">Industrial Loft</div>
+					<div class="date">7/21/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=364">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/Feierabend.jpg"/>
+					<div class="user">MPoces</div>
+					<div class="fade"></div>
+					<div class="title">Bom resto de tarde, Sra Müller</div>
+					<div class="date">10/2/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=392">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2014/utopia3d_3.jpg"/>
+					<div class="fade"></div>
+					<div class="user">Utopia780</div>
+					<div class="title">_Utopia3D/</div>
+					<div class="date">10/7/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=91&p=3">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/minhas_1.png"/>
+					<div class="fade"></div>
+					<div class="user">WBlacker</div>
+					<div class="title">Minhas últimas artes</div>
+					<div class="date">10/9/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=401">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/lloyd.jpg"/>
+					<div class="fade"></div>
+					<div class="user">sergio</div>
+					<div class="title">Personagem lloyd</div>
+					<div class="date">10/22/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=407">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/rio_ave_1.jpg"/>
+					<div class="fade"></div>
+					<div class="user">renatogsousa</div>
+					<div class="title">Rio Ave</div>
+					<div class="date">11/14/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=39&p=2">link</a>
+				</div>
+				<div class="work" data-type="video">
+					<img src="2014/showreel.jpg"/>
+					<div class="fade"></div>
+					<div class="user">José Ricardo Silva</div>
+					<div class="title">ShowReel</div>
+					<div class="date">12/5/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=421">link</a>
+				</div>
+				<div class="work" data-type="image">
+					<img src="2014/Phycodurus_eques.png"/>
+					<div class="fade"></div>
+					<div class="user">MPoces</div>
+					<div class="title">phycodurus eques - dragão marinho</div>
+					<div class="date">12/9/2014</div>
+					<a href="http://forum.blender-pt.com/viewtopic.php?id=383">link</a>
+				</div>
+			</div>
+			<div class="year">2015</div><div class="show" data-year="2015">[Mostrar]</div><br/>
+			<div class="year">2016</div><div class="show" data-year="2016">[Mostrar]</div><br/>
+		</div>
+		</div>
+		</body>
+	<script type="text/javascript">
+		$("#highlight").click(function(){
+			$(this).hide();
+		});
+		
+		$(".work").click(function(e){
+			var w = $(this);
+			var imgPath = w.find("img").attr("src").split("/");
+			imgPath = imgPath[0]+"/raws/"+imgPath[1];
+			showPreview(imgPath);
+			/*console.log(imgPath);
+			var img = $("<img/>").attr({src:imgPath});
+			var h = $("#highlight");
+			h.children().remove();
+			h.append(img).show();*/
+		});
+		$(window).resize(function(){
+			updatePreview();
+		});
+		$(".show").click(function(){
+			
+			var w = $(".works[data-year=\""+$(this).data("year")+"\"]");
+			w.toggle();
+			if(w.is(":visible")){
+				w.css({"display":"inline-block"});
+				$(this).html("[Esconder]");
+			}else{
+				$(this).html("[Mostrar]");
+			
+			}
+		});
+	</script
+</html>
